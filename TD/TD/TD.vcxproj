@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SFMLController.cpp" />
@@ -133,6 +134,7 @@
     <ClCompile Include="Tower.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="SFMLController.h" />
