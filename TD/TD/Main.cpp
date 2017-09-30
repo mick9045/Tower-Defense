@@ -5,8 +5,6 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(700, 700), "Tower Defence");
-	Level level;
-	Tower tower;
 	sf::Vector2f pos;
 	//---------------------
 	bool isMove = false;
@@ -17,10 +15,6 @@ int main()
 	//------------------
 	while (window.isOpen())
 	{
-		//-----------------
-		//std::cout << pixelPos.x << "\n";
-		//std::cout << pos.x << "\n";
-		//-----------------
 		sf::Event event;
 		sf::CircleShape towerShape;
 		while (window.pollEvent(event))
@@ -29,14 +23,13 @@ int main()
 				window.close();
 			if (event.type == sf::Event::MouseButtonPressed) //
 			{
-				if (event.key.code == sf::Mouse::Left)
+				if (event.key.code == sf::Mouse::Left) //Высчитывает и устанавливает башню по координатам( тут должен изменятсья массив ar)
 				{
 					sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
 					pos = window.mapPixelToCoords(pixelPos);
 
 					x = pos.x / 64;
 					y = pos.y / 64;
-					//ar[x][y] = 2;
 					cout << x << " " << y << endl;
 					cout << x * 64 << " " << y * 64 << endl;
 					
@@ -44,8 +37,6 @@ int main()
 			}
 		}
 		window.clear();
-		//level.DrawLevel(window);
-		tower.DrawTower(window, sf::Vector2f((x * 64) + 8, (y * 64) + 8));
 		window.display();
 	}
 

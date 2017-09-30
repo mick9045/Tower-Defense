@@ -9,7 +9,6 @@ using namespace std;
 class Level
 {
 private:
-	list<Tower> * towers;
 	sf::RectangleShape Way;
 	sf::RectangleShape Void;
 	const int map_Height = 9;
@@ -17,5 +16,15 @@ private:
 	int **ar;
 public:
 	void DrawLevel(sf::RenderWindow & window);
-	Level();
+	Level(); //ar = ar[map_Height][map_Width] =
+			//{
+			//	0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			//	0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			//	0, 0, 1, 1, 1, 1, 1, 1, 1, 0,
+			//	0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+			//	0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+			//	0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+			//	0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+			//	0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+			//	0, 0, 0, 0, 0, 0, 0, 0, 1, 0
 };
