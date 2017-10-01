@@ -7,7 +7,7 @@ class Tower : GameObject
 {
 private:
 	float RangeOfAttack; //–адиус атаки башни
-	int x, y;//индексы хранени€ башни в массиве asdasdasd
+	int x, y;//индексы хранени€ башни в массиве
 	int cost;
 	int damage;
 public:

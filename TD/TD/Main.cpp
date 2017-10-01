@@ -4,6 +4,7 @@
 #include "Map.h"
 int main()
 {
+	Level level;
 	sf::RenderWindow window(sf::VideoMode(700, 700), "Tower Defence");
 	sf::Vector2f pos;
 	//---------------------
@@ -37,6 +38,7 @@ int main()
 			}
 		}
 		window.clear();
+		level.DrawLevel(window);
 		window.display();
 	}
 

@@ -3,16 +3,16 @@
 
 void Level::DrawLevel(sf::RenderWindow & window)
 {
-	for (int i = 0; i < map_Height; i++)
+	for (int i = 0; i < 9; i++)
 	{
-		for (int j = 0; j < map_Width; j++)
+		for (int j = 0; j < 10; j++)
 		{
-			if (ar[i][j] == 0)
+			if (map[i][j] == 0)
 			{	
 				Void.setPosition(j * 64 + 4, i * 64 + 4);
 				window.draw(Void);
 			}
-			if (ar[i][j] == 1)
+			if (map[i][j] == 1)
 			{
 				Way.setPosition(j * 64 + 4, i * 64 + 4);
 				window.draw(Way);
