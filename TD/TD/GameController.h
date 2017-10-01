@@ -4,7 +4,7 @@
 #include "Level.h"
 #include <SFML\Graphics.hpp>
 #include <vector>
-
+#include "Menu.h"
 
 class GameController
 {
@@ -18,15 +18,19 @@ public:
 	void AddBullet(Bullet bullet); //стреляем пулей
 	void AddEnemy(Enemy enemy); //спавним врагов, количеством
 	void BuyTower(Tower tower); //располагаем башню на ячейках и вычитаем количество золота
-	void SFMLWindowProcedure(); //процедура sf::RenderWindow window(sf::VideoMode(700, 700), "Tower Defence"); 
 	void TowerController(Tower tower); // При нажатии на тавер - меню для удаления башни
 
 	void EnemyPassLab(); // враг прошел через лабиринт и отнимает здоровье
+
+	void Game();
+
+	GameController();
 private:
 	vector <Bullet> bullets;
 	vector <Enemy> enemies;
 	vector <Tower> tower;
 
+	sf::Font font;
 	Level level;
 	sf::RenderWindow window;
 	sf::Event event;
