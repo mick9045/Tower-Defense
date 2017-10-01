@@ -4,12 +4,22 @@ GameObject::GameObject()
 
 }
 
-GameObject::GameObject(sf::Shape * shape, sf::Vector2f ObjPosition)
+GameObject::GameObject(std::shared_ptr<sf::Shape> shape, sf::Vector2f ObjPosition)
 {
-	shapePtr = std::shared_ptr<sf::Shape>(shape);
+	shapePtr = shape;
 	position = ObjPosition;
 }
 
 GameObject::~GameObject()
 {
+}
+
+void GameObject::Draw(sf::RenderWindow & window)
+{
+	window.draw(*shapePtr);
+}
+
+sf::Vector2f GameObject::getPosition()
+{
+	return position;
 }
