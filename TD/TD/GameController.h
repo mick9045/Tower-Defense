@@ -22,6 +22,7 @@ public:
 
 	void EnemyPassLab(); // враг прошел через лабиринт и отнимает здоровье
 
+	void DrawGame();
 	void Game();
 
 	GameController();
@@ -39,4 +40,6 @@ private:
 	int playerHP; //у нас столько здоровья
 	float gameSpeed;
 	sf::Shape * buttonBuyTower; //?
+	int numberOfWave;
+	bool isGame;
 };

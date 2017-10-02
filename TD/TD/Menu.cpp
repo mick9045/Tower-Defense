@@ -2,6 +2,7 @@
 
 Menu::Menu(float width, float height)
 {
+	isMenu = true;
 	font.loadFromFile("10733.otf");
 	text[0].setString("PLAY");
 	text[0].setFont(font);
@@ -30,12 +31,39 @@ void Menu::Draw(sf::RenderWindow & window)
 	{
 		window.draw(text[i]);
 	}
+	window.display();
 }
 
 void Menu::MenuRun(sf::RenderWindow & window)
 {
+	sf::Event event;
 	while (isMenu)
 	{
-		if(text[1].getGlobalBounds().contains(sf::Mouse::getPosition(window)))
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+			if (event.type == sf::Event::Resized)
+				Draw(window);
+		}
+		text[0].setFillColor(sf::Color::White);
+		text[1].setFillColor(sf::Color::White);
+		text[2].setFillColor(sf::Color::White);
+		text[3].setFillColor(sf::Color::White);
+
+		if (text[0].getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window))))
+		{ 
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				if (selectedIndex == 1) { isMenu = false; }
+			}
+			text[0].setFillColor(sf::Color::Red); selectedIndex = 1; 
+		}
+		if (text[1].getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) { text[1].setFillColor(sf::Color::Red); selectedIndex = 2; }
+		if (text[2].getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) { text[2].setFillColor(sf::Color::Red); selectedIndex = 3; }
+		if (text[3].getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) { text[3].setFillColor(sf::Color::Red); selectedIndex = 4; }
+		window.clear();
+		Draw(window);
+		
 	}
 }

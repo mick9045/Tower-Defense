@@ -9,12 +9,12 @@ void Level::DrawLevel(sf::RenderWindow & window)
 		{
 			if (map[i][j] == 0)
 			{	
-				Void.setPosition(j * 64 + 4, i * 64 + 4);
+				Void.setPosition(j * 64 + 44, i * 64 + 44);
 				window.draw(Void);
 			}
 			if (map[i][j] == 1)
 			{
-				Way.setPosition(j * 64 + 4, i * 64 + 4);
+				Way.setPosition(j * 64 + 44, i * 64 + 44);
 				window.draw(Way);
 			}
 		}

@@ -11,6 +11,6 @@ private:
 public:
 	Menu(float width, float height);
 	void Draw(sf::RenderWindow & window);
-	void MenuRun();
+	void MenuRun(sf::RenderWindow & window);
 
 };

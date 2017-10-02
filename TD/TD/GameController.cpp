@@ -1,5 +1,31 @@
 #include "GameController.h"
 
+void GameController::DrawGame()
+{
+	sf::RectangleShape rect(sf::Vector2f(1000, 800));
+	rect.setFillColor(sf::Color(51, 133, 255));
+	rect.setPosition(sf::Vector2f(0, 0));
+	rect.setOutlineThickness(-3);
+	rect.setOutlineColor(sf::Color::Blue);
+	sf::Event event;
+	while (isGame)
+	{
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+			//if (event.type == sf::Event::Resized)
+				//Draw(window);
+		}
+		window.clear();
+		window.draw(rect);
+		level.DrawLevel(window);
+		window.display();
+	
+
+	}
+}
+
 void GameController::Game()
 {
 	Menu menu(window.getSize().x, window.getSize().y);
@@ -31,8 +57,8 @@ void GameController::Game()
 			}
 		}
 		window.clear();
-		//level.DrawLevel(window);
-		menu.Draw(window);
+		menu.MenuRun(window);
+		DrawGame();
 		window.draw(text);
 		window.display();
 	}
@@ -41,5 +67,8 @@ void GameController::Game()
 GameController::GameController()
 {
 	font.loadFromFile("10733.otf");
-	window.create(sf::VideoMode(700, 700), "Tower Defence");
+	sf::ContextSettings settings;
+	settings.antialiasingLevel = 8;
+	isGame = true;
+	window.create(sf::VideoMode(1000, 800), "Tower Defence", sf::Style::Default, settings);
 }
