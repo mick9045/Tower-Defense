@@ -42,4 +42,9 @@ private:
 	sf::Shape * buttonBuyTower; //?
 	int numberOfWave;
 	bool isGame;
+
+	bool isPlanting = false;
+	sf::Vector2i mouseCoords;
+	sf::Vector2f convertedMouseCoords;
+	int x, y; //индексы для расположения башни в массиве
 };

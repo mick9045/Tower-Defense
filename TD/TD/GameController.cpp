@@ -8,18 +8,70 @@ void GameController::DrawGame()
 	rect.setOutlineThickness(-3);
 	rect.setOutlineColor(sf::Color::Blue);
 	sf::Event event;
+
+	sf::CircleShape Tower_;
+	sf::CircleShape towerPlanting;
+	sf::Text button;
+
+	Tower_.setFillColor(sf::Color(0, 179, 6));
+	Tower_.setRadius(40);
+	Tower_.setOutlineThickness(4);
+	Tower_.setOutlineColor(sf::Color(0, 102, 34));
+	Tower_.setPosition(sf::Vector2f(window.getSize().x / 5 * 4, 44));
+
+	button.setString("Buy");
+	button.setFont(font);
+	button.setCharacterSize(40);
+	button.setPosition(sf::Vector2f(window.getSize().x / 4 * 3 + 40 + Tower_.getRadius() / 2, (40 + Tower_.getRadius() * 2 + Tower_.getOutlineThickness())));
+	towerPlanting = Tower_;
+	towerPlanting.setRadius(26);
 	while (isGame)
 	{
+		towerPlanting.setFillColor(sf::Color(0, 179, 6));
+		mouseCoords = sf::Mouse::getPosition(window);
+		convertedMouseCoords = window.mapPixelToCoords(mouseCoords);
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+
+				if (button.getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window))))
+				{
+
+					button.setFillColor(sf::Color::Red);
+
+					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+					{
+						isPlanting = true;
+					}
+				}
+				button.setFillColor(sf::Color::White);
+			
 			//if (event.type == sf::Event::Resized)
 				//Draw(window);
 		}
+		if (isPlanting)
+		{
+			if (convertedMouseCoords.x > 44 && convertedMouseCoords.x < 640 + 44 && convertedMouseCoords.y > 44 && convertedMouseCoords.y < 576 + 44)
+			{
+				x = (convertedMouseCoords.x - 44) / 64;
+				y = (convertedMouseCoords.y - 44) / 64;
+				cout << x << " " << y << endl;
+				towerPlanting.setPosition(sf::Vector2f(x * 64 + 48, y * 64 + 48));
+				if (level.map[y][x] == 1)
+				{
+					towerPlanting.setFillColor(sf::Color::Red);
+				}
+			}
+			
+		}
+
 		window.clear();
 		window.draw(rect);
+		window.draw(button);
+		window.draw(Tower_);
 		level.DrawLevel(window);
+		window.draw(towerPlanting);
 		window.display();
 	
 
@@ -33,7 +85,6 @@ void GameController::Game()
 	text.setPosition(100, 100);
 	Level level;
 	sf::Vector2f pos;
-	int x = 0, y = 0;
 
 	while (window.isOpen())
 	{
@@ -67,8 +118,8 @@ void GameController::Game()
 GameController::GameController()
 {
 	font.loadFromFile("10733.otf");
-	sf::ContextSettings settings;
-	settings.antialiasingLevel = 8;
 	isGame = true;
-	window.create(sf::VideoMode(1000, 800), "Tower Defence", sf::Style::Default, settings);
+	playerGold = 200;
+	playerHP = 10;
+	window.create(sf::VideoMode(1000, 800), "Tower Defence");
 }
