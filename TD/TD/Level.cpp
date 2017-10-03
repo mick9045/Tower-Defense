@@ -26,8 +26,7 @@ void Level::DrawLevel(sf::RenderWindow & window)
 			{
 				Void.setPosition(j * 64 + 44, i * 64 + 44);
 				window.draw(Void);
-				towerPlanting.setPosition(sf::Vector2f(j * 64 + 48, i * 64 + 48));
-				window.draw(towerPlanting);
+			
 			}
 		}
 	}

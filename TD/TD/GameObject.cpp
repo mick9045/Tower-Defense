@@ -8,7 +8,7 @@ GameObject::GameObject(std::shared_ptr<sf::Shape> shape, sf::Vector2f ObjPositio
 {
 	shapePtr = shape;
 	position = ObjPosition;
-
+	shapePtr->setPosition(position);
 }
 
 GameObject::~GameObject()

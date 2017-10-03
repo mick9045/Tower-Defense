@@ -7,12 +7,12 @@ class Tower : public GameObject
 {
 private:
 	float RangeOfAttack; //–адиус атаки башни
-	int x, y;//индексы хранени€ башни в массиве
 	int cost;
 	int damage;
 public:
 	Tower();
-	Tower(float RangeOfAttack, int x, int y, int cost, int damage, std::shared_ptr<sf::Shape> shape, sf::Vector2f position);
+	Tower(float RangeOfAttack, int cost, int damage, std::shared_ptr<sf::Shape> shape, sf::Vector2f position);
 	Bullet Shoot(float movementSpeed, std::shared_ptr<Enemy> enemy);
 	bool Aim(Enemy enemy); //ѕровер€ем, есть ли враг в радиусе атаки башни. если есть - возвращаем позицию врага что бы стрельнуть по ней
+	virtual void Draw(sf::RenderWindow & window);
 };

@@ -4,11 +4,10 @@ Tower::Tower()
 {
 }
 
-Tower::Tower(float RangeOfAttack, int x, int y, int cost, int damage, std::shared_ptr<sf::Shape> shape, sf::Vector2f position):GameObject(shape, position)
+Tower::Tower(float RangeOfAttack, int cost, int damage, std::shared_ptr<sf::Shape> shape, sf::Vector2f position):GameObject(shape, position)
 {
 	Tower::RangeOfAttack = RangeOfAttack;
-	Tower::x = x;
-	Tower::y = y;
+	
 	Tower::cost = cost;
 	Tower::damage = damage;
 
@@ -26,4 +25,10 @@ bool Tower::Aim(Enemy enemy)
 	sf::Vector2f distanceV = position - enemy.getPosition();
 	float distance = sqrt(distanceV.x * distanceV.x + distanceV.y * distanceV.y);
 	return (distance < RangeOfAttack);
+}
+
+void Tower::Draw(sf::RenderWindow & window)
+{
+	sf::Vector2f debug = shapePtr->getPosition();
+	window.draw(*shapePtr);
 }

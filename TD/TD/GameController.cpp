@@ -26,11 +26,8 @@ void GameController::DrawGame()
 	towerPlanting = Tower_;
 	towerPlanting.setRadius(26);
 
-	shared_ptr<sf::CircleShape> towerForPlanting(new sf::CircleShape());
-	towerForPlanting->setFillColor(sf::Color(0, 179, 6));
-	towerForPlanting->setOutlineColor(sf::Color(0, 102, 34));
-	towerForPlanting->setOutlineThickness(4);
-	towerForPlanting->setRadius(26);
+	
+	
 	while (isGame)
 	{
 		towerPlanting.setFillColor(sf::Color(0, 179, 6));
@@ -48,9 +45,15 @@ void GameController::DrawGame()
 					{
 						if (level.map[y][x] == 0)
 						{
+							shared_ptr<sf::CircleShape> towerForPlanting = std::make_shared<sf::CircleShape>(sf::CircleShape());
+							towerForPlanting->setFillColor(sf::Color(0, 179, 6));
+							towerForPlanting->setOutlineColor(sf::Color(0, 102, 34));
+							towerForPlanting->setOutlineThickness(4);
+							towerForPlanting->setRadius(26);
+
 							level.map[y][x] = 2;
 							isPlanting = false;
-							Tower addTower(100.f, x, y, 75, 15, towerForPlanting, sf::Vector2f(x * 64 + 48, y * 64 + 48));
+							Tower addTower(100.f, 75, 15, towerForPlanting, sf::Vector2f(x * 64 + 48, y * 64 + 48));
 							tower.push_back(addTower);
 						}
 					}
@@ -92,6 +95,12 @@ void GameController::DrawGame()
 		window.draw(button);
 		window.draw(Tower_);
 		level.DrawLevel(window);
+
+		for (int i = 0; i < tower.size(); i++)
+		{
+			tower[i].Draw(window);
+		}
+
 		window.draw(towerPlanting);
 		window.display();
 
