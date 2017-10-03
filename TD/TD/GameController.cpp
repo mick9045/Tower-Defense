@@ -25,6 +25,12 @@ void GameController::DrawGame()
 	button.setPosition(sf::Vector2f(window.getSize().x / 4 * 3 + 40 + Tower_.getRadius() / 2, (40 + Tower_.getRadius() * 2 + Tower_.getOutlineThickness())));
 	towerPlanting = Tower_;
 	towerPlanting.setRadius(26);
+
+	shared_ptr<sf::CircleShape> towerForPlanting(new sf::CircleShape());
+	towerForPlanting->setFillColor(sf::Color(0, 179, 6));
+	towerForPlanting->setOutlineColor(sf::Color(0, 102, 34));
+	towerForPlanting->setOutlineThickness(4);
+	towerForPlanting->setRadius(26);
 	while (isGame)
 	{
 		towerPlanting.setFillColor(sf::Color(0, 179, 6));
@@ -44,6 +50,8 @@ void GameController::DrawGame()
 						{
 							level.map[y][x] = 2;
 							isPlanting = false;
+							Tower addTower(100.f, x, y, 75, 15, towerForPlanting, sf::Vector2f(x * 64 + 48, y * 64 + 48));
+							tower.push_back(addTower);
 						}
 					}
 				}
@@ -71,7 +79,7 @@ void GameController::DrawGame()
 				y = (convertedMouseCoords.y - 44) / 64;
 				cout << x << " " << y << endl;
 				towerPlanting.setPosition(sf::Vector2f(x * 64 + 48, y * 64 + 48));
-				if (level.map[y][x] == 1)
+				if (level.map[y][x] == 1 || level.map[y][x] ==  2)
 				{
 					towerPlanting.setFillColor(sf::Color::Red);
 				}
