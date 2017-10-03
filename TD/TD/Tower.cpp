@@ -18,7 +18,7 @@ Bullet Tower::Shoot(float movementSpeed, std::shared_ptr<Enemy> enemy)
 {
 	std::shared_ptr<sf::Shape> shape (new sf::CircleShape(3));
 	shape->setFillColor(sf::Color(255, 0, 0));
-//	return Bullet(damage, movementSpeed, enemy->GetPosition(),shape, position);
+	return Bullet(damage, movementSpeed, enemy->getPosition(),shape, position);
 }
 
 bool Tower::Aim(Enemy enemy)
