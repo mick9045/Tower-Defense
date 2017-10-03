@@ -34,19 +34,32 @@ void GameController::DrawGame()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-
-				if (button.getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window))))
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				if (isPlanting == true)
 				{
-
-					button.setFillColor(sf::Color::Red);
-
-					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+					if (convertedMouseCoords.x > 44 && convertedMouseCoords.x < 640 + 44 && convertedMouseCoords.y > 44 && convertedMouseCoords.y < 576 + 44)
 					{
-						isPlanting = true;
+						if (level.map[y][x] == 0)
+						{
+							level.map[y][x] = 2;
+							isPlanting = false;
+						}
 					}
 				}
-				button.setFillColor(sf::Color::White);
-			
+			}
+			if (button.getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window))))
+			{
+
+				button.setFillColor(sf::Color::Red);
+
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+				{
+					isPlanting = true;
+				}
+			}
+			button.setFillColor(sf::Color::White);
+
 			//if (event.type == sf::Event::Resized)
 				//Draw(window);
 		}
@@ -63,7 +76,7 @@ void GameController::DrawGame()
 					towerPlanting.setFillColor(sf::Color::Red);
 				}
 			}
-			
+
 		}
 
 		window.clear();
@@ -73,7 +86,7 @@ void GameController::DrawGame()
 		level.DrawLevel(window);
 		window.draw(towerPlanting);
 		window.display();
-	
+
 
 	}
 }
@@ -92,7 +105,7 @@ void GameController::Game()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-			if (event.type == sf::Event::MouseButtonPressed) 
+			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				if (event.key.code == sf::Mouse::Left) //Высчитывает и устанавливает башню по координатам( тут должен изменятсья массив ar)
 				{
