@@ -16,7 +16,7 @@ public:
 	void BulletHitEnemy();//?
 
 	void AddBullet(Bullet bullet); //стреляем пулей
-	void AddEnemy(Enemy enemy); //спавним врагов, количеством
+	void AddEnemy(int dif); //спавним врагов, количеством
 	void BuyTower(Tower tower); //располагаем башню на ячейках и вычитаем количество золота
 	void TowerController(Tower tower); // При нажатии на тавер - меню для удаления башни
 
@@ -47,4 +47,6 @@ private:
 	sf::Vector2i mouseCoords;
 	sf::Vector2f convertedMouseCoords;
 	int x, y; //индексы для расположения башни в массиве
+
+	sf::Vector2f enemyStart = sf::Vector2f(64 * 2 + 40 + 8 + 10, 44);
 };
